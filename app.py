@@ -39,17 +39,21 @@ def run_nlp(text,model):
     st.write(HTML_WRAPPER.format(html), unsafe_allow_html=True)
 
 def detect_ents(text, model):
-    colors = {"SOFT_SKILL": "linear-gradient(90deg, #aa9cfc, #fc9ce7)"}
+    colors = {"TECHNICAL_SKILLS": "linear-gradient(90deg, #aba3c2, #d499f2)"}
     options = {"ents": ["TECHNICAL_SKILLS"], "colors": colors}
     doc = model(text)
     with st.container():
+        competencies = []
         for ent in doc.ents:
-            st.write(ent.text)
-
-
-
+            competencies.append(ent.text)
+        df=pd.DataFrame(competencies)
+        df['lower']=df[0].apply(lambda x: x.lower())
+        for i in df.groupby('lower',sort=True)[0].first().tolist():
+            st.write(i)
+            
 def resume_parse(text):
-    st.button("Generate Skills", on_click=detect_ents(resume_text,nlp))
+    detect_ents(resume_text,nlp)
+    #slot1.button("Generate Skills", on_click=detect_ents(resume_text,nlp))
     
 
 
@@ -82,14 +86,16 @@ if skills_type == 'Soft Skills':
 elif skills_type == 'Technical Skills':
     data = st.file_uploader("Upload your CV here", type=['pdf', 'docx', 'txt'])
     resume_text = None
+    slot1 = st.empty()
     if data is not None:
         if data.name.endswith('pdf'):
-            raw = parser.from_file(data)
-            resume_text = raw['content'].lstrip()
+            with st.spinner("Processing..."):
+                raw = parser.from_file(data)
+                resume_text = raw['content'].lstrip()
         elif data.name.endswith('docx'):
             resume_text = docx2txt.process(data)
         elif data.name.endswith('txt'):
-            resume_text = Path(data).read_text()
+            resume_text = ' '.join(data.readlines())
         if resume_text:
             resume_parse(resume_text)
         else:
