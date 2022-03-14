@@ -6,7 +6,7 @@ Team Members: Megan Yee, Aloysius Chow, Natalie Chung, Justin Lim
 **Statement:** How can we get employers to be open and hire women who have less social mobility and may not have access to livelihood opportunities?
 
 ### Solution
-Slide Deck:\
+Slide Deck: https://docs.google.com/presentation/d/1Fpuio0WL8BtbNvVMoac9N5ahdEWtRjsNWSPDTEnSJXQ/edit?usp=sharing \
 Prototype: https://github.com/ydymegan/hfg-2022/releases/tag/Release \
 Video Demo:
 
