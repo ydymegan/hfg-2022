@@ -1,5 +1,5 @@
 # hfg-2022
-Team Name: oh, JAMN!
+Team Name: oh, JAMN!\
 Team Members: Megan Yee, Aloysius Chow, Natalie Chung, Justin Lim
 ### Problem Statement
 **NPO:** Daughters of Tomorrow\
