@@ -9,3 +9,11 @@ Slide Deck:\
 ProtoType:\
 Video Demo:
 
+### Requirements
+docx2txt==0.8
+pandas==1.3.4
+Pillow==9.0.1
+spacy==3.2.3
+streamlit==1.7.0
+tika==1.24
+
