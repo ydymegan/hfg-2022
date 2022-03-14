@@ -81,9 +81,9 @@ if skills_type == 'Soft Skills':
 ##    html1 = displacy.render(doc1, style="ent", options = options)
 ##    html1 = html1.replace("\n", " ")
 ##    st.write(HTML_WRAPPER.format(html1), unsafe_allow_html=True)
-    answer_2 = st.text_area("Give an example of when you worked well in a team.", height=10)
+    answer_2 = st.text_area("Give an example of when you worked well in a team.",default_2, height=10)
     run_nlp(answer_2,nlp)
-    answer_3 = st.text_area("What is the most challenging/difficult situation you’ve ever had to resolve, and how did you do it?", height=10)
+    answer_3 = st.text_area("What is the most challenging/difficult situation you’ve ever had to resolve, and how did you do it?",default_2, height=10)
     run_nlp(answer_3,nlp)
 
     
