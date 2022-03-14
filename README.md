@@ -7,7 +7,7 @@ Team Members: Megan Yee, Aloysius Chow, Natalie Chung, Justin Lim
 
 ### Solution
 Slide Deck:\
-Prototype: https://github.com/ydymegan/hfg-2022/releases/tag/Release
+Prototype: https://github.com/ydymegan/hfg-2022/releases/tag/Release \
 Video Demo:
 
 
