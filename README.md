@@ -17,7 +17,7 @@ For technical skill patterns used for EntityRuler\
 https://github.com/nicolamelluso/SkillNER
 For soft skill terms patterns used for EntityRuler\
 https://github.com/florex/resume_corpus
-For resume dataset\
+For resume dataset
 
 ### Requirements
 - docx2txt==0.8
