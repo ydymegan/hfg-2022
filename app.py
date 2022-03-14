@@ -8,9 +8,10 @@ from tika import parser
 import docx2txt
 from pathlib import Path
 
-HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; 
-                margin-bottom: 2.5rem">{}</div>"""
-
+HTML_WRAPPER_1 = """<div style="overflow-x: auto; background-color: #f0d1d9; border: 2px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; 
+                margin-bottom: 1.5rem">{}</div>"""
+HTML_WRAPPER_2 = """<div style="overflow-x: auto; background-color: #FAF9F6; width: min-content; white-space: nowrap; border: 2px solid #543478; border-radius: 0.25rem; padding: 0.5rem; 
+                margin-bottom: 1.5rem">{}</div>"""
 @st.cache(allow_output_mutation=True)
 
 
@@ -25,8 +26,8 @@ def load_model():
       patterns.append({"label":"SOFT_SKILL","pattern":tokens_new})
     nlp_ner = spacy.load("model-best")
     ruler = nlp_ner.add_pipe("entity_ruler", before = "ner")
-    ruler.add_patterns(patterns)
     ruler.from_disk('jz_skill_patterns.jsonl')
+    ruler.add_patterns(patterns)
     return nlp_ner
 
 #@st.cache()
@@ -36,20 +37,21 @@ def run_nlp(text,model):
     doc = model(text)
     html = displacy.render(doc, style="ent", options=options)
     html = html.replace("\n", " ")
-    st.write(HTML_WRAPPER.format(html), unsafe_allow_html=True)
+    st.write(HTML_WRAPPER_1.format(html), unsafe_allow_html=True)
 
 def detect_ents(text, model):
-    colors = {"TECHNICAL_SKILLS": "linear-gradient(90deg, #aba3c2, #d499f2)"}
-    options = {"ents": ["TECHNICAL_SKILLS"], "colors": colors}
+    #colors = {"TECHNICAL_SKILLS": "linear-gradient(90deg, #aba3c2, #d499f2)"}
+    #options = {"ents": ["TECHNICAL_SKILLS"], "colors": colors}
     doc = model(text)
     with st.container():
         competencies = []
         for ent in doc.ents:
-            competencies.append(ent.text)
+            if ent.label_ == 'COMPETENCY':
+                competencies.append(ent.text)
         df=pd.DataFrame(competencies)
         df['lower']=df[0].apply(lambda x: x.lower())
         for i in df.groupby('lower',sort=True)[0].first().tolist():
-            st.write(i)
+            st.write(HTML_WRAPPER_2.format(i.title()), unsafe_allow_html=True)
             
 def resume_parse(text):
     detect_ents(resume_text,nlp)
@@ -69,9 +71,11 @@ skills_type = st.radio(
      ('Soft Skills', 'Technical Skills'))
 nlp = load_model()
 
-
+default_1 = 'I use my problem-solving skills and break down problems into smaller parts. Then, I communicate to my teammates and encourage them to contribute based on their unique skillsets.'
+default_2 = 'We were presented with a difficult challenge that was not familiar to the team. I aimed to foster tenacity in the team and keep spirits up so that none of us were discouraged. I did my best to listen actively to each team member\'s concerns and struggles.'
+default_3 = 'The situation had remained stagnant for several days, and our manager was on leave and unable to help the team. I showed resilience and continued to persevere, brainstorming for alternative solutions to the problem.'
 if skills_type == 'Soft Skills':
-    answer_1 = st.text_area("How do you approach problems? What is your process?", height=10)
+    answer_1 = st.text_area("How do you approach problems? What is your process?", default_1, height=10)
     run_nlp(answer_1,nlp)
 ##    doc1 = nlp(answer_1)
 ##    html1 = displacy.render(doc1, style="ent", options = options)
@@ -84,7 +88,7 @@ if skills_type == 'Soft Skills':
 
     
 elif skills_type == 'Technical Skills':
-    data = st.file_uploader("Upload your CV here", type=['pdf', 'docx', 'txt'])
+    data = st.file_uploader("Upload your CV here", type=['pdf', 'docx'])
     resume_text = None
     slot1 = st.empty()
     if data is not None:
@@ -94,8 +98,6 @@ elif skills_type == 'Technical Skills':
                 resume_text = raw['content'].lstrip()
         elif data.name.endswith('docx'):
             resume_text = docx2txt.process(data)
-        elif data.name.endswith('txt'):
-            resume_text = ' '.join(data.readlines())
         if resume_text:
             resume_parse(resume_text)
         else:
