@@ -20,11 +20,12 @@ For soft skill terms patterns used for EntityRuler\
 https://github.com/florex/resume_corpus
 For resume dataset
 
-### Requirements
-- docx2txt==0.8
-- pandas==1.3.4
-- Pillow==9.0.1
-- spacy==3.2.3
-- streamlit==1.7.0
-- tika==1.24
+### Build instructions
+- Clone repository, and download model-best from latest release and extract into base directory
+- Build Docker image (port specification in Docker file must be changed depending on service used)
+- Google Cloud Run:\
+```docker build -t hfg2022```\
+```docker tag hfg2022 gcr.io/<GCP PROJECT ID>/hfg2022```\
+```docker push gcr.io/<GCP PROJECT ID>/hfg2022```\
+```gcloud run deploy ...```
 
