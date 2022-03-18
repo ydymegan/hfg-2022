@@ -1,4 +1,5 @@
 {"label":"COMPETENCY","pattern":[{"TEXT":".NET"}]}
+{"label":"COMPETENCY","pattern":[{"LOWER":"clerical"}]}
 {"label":"COMPETENCY","pattern":[{"LOWER":""},{"LOWER":"net"}]}
 {"label":"COMPETENCY","pattern":[{"LOWER":"1password"}]}
 {"label":"COMPETENCY","pattern":[{"TEXT":"3D"}]}
