@@ -1,13 +1,14 @@
-# hfg-2022
+#bloom: hfg-2022
 Team Name: oh, JAMN!\
 Team Members: Megan Yee (Information Systems), Aloysius Chow (Business Analytics), Natalie Chung (Business), Justin Lim (Commnications and New Media)
+
 ### Problem Statement
 **NPO:** Daughters of Tomorrow\
 **Statement:** How can we get employers to be open and hire women who have less social mobility and may not have access to livelihood opportunities?
 
 ### Solution
 [Slide Deck](https://docs.google.com/presentation/d/1Fpuio0WL8BtbNvVMoac9N5ahdEWtRjsNWSPDTEnSJXQ/edit?usp=sharing) \
-[Prototype](https://github.com/ydymegan/hfg-2022/releases/tag/Release) \
+[Prototype](https://hfg2022-xeqmq7fm5a-uc.a.run.app/) \
 [Video Demo](https://youtu.be/e9RDUqWFbJ0) \
 [Figma](https://www.figma.com/file/KCCUnEaiC6M9Ccg8HVKvr5/DSC-Hackathon-UI%2FUX-Mockup?node-id=0%3A1)
 
