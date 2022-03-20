@@ -1,6 +1,7 @@
-# bloom: hfg-2022
-Team Name: oh, JAMN!\
-Team Members: Megan Yee (Information Systems), Aloysius Chow (Business Analytics), Natalie Chung (Business), Justin Lim (Commnications and New Media)
+# bloom: hack-for-good-2022 
+**Team Name:** oh, JAMN!\
+**Team Members:** Megan Yee (Information Systems), Aloysius Chow (Business Analytics), Natalie Chung (Business), Justin Lim (Commnications and New Media)\
+**Placing: Winner, 1st Place**
 
 ### Problem Statement
 **NPO:** Daughters of Tomorrow\
